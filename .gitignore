@@ -1,0 +1,8 @@
+node_modules/
+generated/
+dist/
+.envio/
+*.log
+.DS_Store
+.env
+.env.local
