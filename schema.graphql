@@ -1,0 +1,33 @@
+# One row per Transfer event ingested across all chains/tokens we index.
+# Powers tx history, balance reconciliation, and (later) Flip event sourcing.
+type Transfer {
+  id: ID!                # `${chainId}-${txHash}-${logIndex}`
+  chainId: Int!
+  tokenAddress: String!  # contract that emitted the Transfer (lowercase)
+  tokenSymbol: String!   # 'USDC' | 'USDT' (resolved from contract)
+  decimals: Int!         # 6 for both
+  fromAddress: String!   # lowercase
+  toAddress: String!     # lowercase
+  amount: BigInt!
+  amountUsd: Float       # = amount/10^decimals for stables; nullable until we wire prices
+  blockNumber: Int!
+  blockTimestamp: Int!   # unix seconds
+  txHash: String!
+  logIndex: Int!
+}
+
+# Rolling per-wallet balance per (chain, token). Updated on every Transfer
+# where `from` or `to` matches. Query by `address` to render a wallet's full
+# token list across chains instantly — no Zerion roundtrip.
+type WalletBalance {
+  id: ID!                # `${chainId}-${tokenAddress}-${walletAddress}` all lowercase
+  chainId: Int!
+  tokenAddress: String!
+  tokenSymbol: String!
+  decimals: Int!
+  walletAddress: String! # the user's wallet
+  amount: BigInt!        # raw (no decimals applied)
+  amountUsd: Float       # stables = amount/10^decimals
+  updatedAt: Int!        # unix seconds of the last Transfer that touched this balance
+  updatedTxHash: String!
+}
