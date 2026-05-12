@@ -10,7 +10,7 @@ contracts:
     events:
       - event: Transfer(address indexed from, address indexed to, uint256 value)
 
-networks:
+chains:
   - id: 1   # Ethereum
     start_block: 22300000   # mid-2024; tighten when we know first Encrypto user signup block
     contracts:
