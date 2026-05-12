@@ -2,6 +2,7 @@
   "name": "encrypto-indexer",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "description": "Encrypto's USDC+USDT Transfer indexer across 8 EVM chains (Envio HyperIndex)",
   "scripts": {
     "codegen": "envio codegen",
