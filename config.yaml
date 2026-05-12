@@ -10,52 +10,56 @@ contracts:
     events:
       - event: Transfer(address indexed from, address indexed to, uint256 value)
 
+# start_block ~1 day back from May 12 2026 14:30 UTC for each chain.
+# Tight bound = cheap backfill on the free Development plan. New events
+# starting RIGHT NOW will index within seconds of confirmation. We will
+# bump start_block back further once a paying plan supports the storage.
 chains:
   - id: 1   # Ethereum
-    start_block: 22300000   # mid-2024; tighten when we know first Encrypto user signup block
+    start_block: 25073601
     contracts:
       - name: USDC
         address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
       - name: USDT
         address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
   - id: 8453  # Base
-    start_block: 18000000
+    start_block: 45867213
     contracts:
       - name: USDC
         address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
   - id: 42161  # Arbitrum
-    start_block: 280000000
+    start_block: 461788723
     contracts:
       - name: USDC
         address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831'
       - name: USDT
         address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
   - id: 10   # Optimism
-    start_block: 128000000
+    start_block: 151462498
     contracts:
       - name: USDC
         address: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85'
       - name: USDT
         address: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58'
   - id: 137  # Polygon
-    start_block: 70000000
+    start_block: 71500000
     contracts:
       - name: USDC
         address: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359'
       - name: USDT
         address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   - id: 43114  # Avalanche
-    start_block: 56000000
+    start_block: 85221659
     contracts:
       - name: USDC
         address: '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E'
   - id: 42220  # Celo
-    start_block: 32000000
+    start_block: 66692135
     contracts:
       - name: USDC
         address: '0xcebA9300f2b948710d2653dD7B07f33A8B32118C'
   - id: 56   # BSC
-    start_block: 45000000
+    start_block: 97873620
     contracts:
       - name: USDC
         address: '0x8AC76a51cc950d9822D68b83fE1aD97B32Cd580d'
