@@ -10,16 +10,17 @@ contracts:
     events:
       - event: Transfer(address indexed from, address indexed to, uint256 value)
 
-# Per Envio schema: when neither `rpc` nor `hypersync_config` is provided
-# for a chain Envio supports, HyperSync is the default data source. RPC
-# mode (which would've taken "over 56 years" to backfill on the free
-# Development plan) is only used when explicitly configured. Removing
-# the earlier hand-rolled hypersync_config URLs lets Envio pick the
-# canonical endpoint for each chain automatically.
+# HyperSync subdomain on hypersync.xyz is the chain ID (per
+# docs.envio.dev/docs/HyperSync/hypersync-supported-networks), NOT the
+# chain name. Earlier attempts at https://eth.hypersync.xyz etc resolved
+# nowhere, so Envio fell back to RPC and reported "over 56 years" backfill.
+# Explicit chain-id URLs flip every chain to Source: HyperSync.
 #
 # start_block ~1 day back from May 12 2026 14:30 UTC for each chain.
 chains:
   - id: 1   # Ethereum
+    hypersync_config:
+      url: https://1.hypersync.xyz
     start_block: 25073601
     contracts:
       - name: USDC
@@ -27,11 +28,15 @@ chains:
       - name: USDT
         address: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
   - id: 8453  # Base
+    hypersync_config:
+      url: https://8453.hypersync.xyz
     start_block: 45867213
     contracts:
       - name: USDC
         address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
   - id: 42161  # Arbitrum
+    hypersync_config:
+      url: https://42161.hypersync.xyz
     start_block: 461788723
     contracts:
       - name: USDC
@@ -39,6 +44,8 @@ chains:
       - name: USDT
         address: '0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9'
   - id: 10   # Optimism
+    hypersync_config:
+      url: https://10.hypersync.xyz
     start_block: 151462498
     contracts:
       - name: USDC
@@ -46,6 +53,8 @@ chains:
       - name: USDT
         address: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58'
   - id: 137  # Polygon
+    hypersync_config:
+      url: https://137.hypersync.xyz
     start_block: 71500000
     contracts:
       - name: USDC
@@ -53,16 +62,22 @@ chains:
       - name: USDT
         address: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F'
   - id: 43114  # Avalanche
+    hypersync_config:
+      url: https://43114.hypersync.xyz
     start_block: 85221659
     contracts:
       - name: USDC
         address: '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E'
   - id: 42220  # Celo
+    hypersync_config:
+      url: https://42220.hypersync.xyz
     start_block: 66692135
     contracts:
       - name: USDC
         address: '0xcebA9300f2b948710d2653dD7B07f33A8B32118C'
   - id: 56   # BSC
+    hypersync_config:
+      url: https://56.hypersync.xyz
     start_block: 97873620
     contracts:
       - name: USDC
